@@ -9,11 +9,6 @@ This module is writted in C++; when run on the target machine, It which extract 
 # Decrypt data
 A python module to decrypt the encrypted data using master key.
 
-## Download
-
-```bash
-git clone https://github.com/tajiknomi/Browser_Credential_Extractor.git
-```
 ## How to build
 
 ```
@@ -42,20 +37,20 @@ extractMasterKeys.exe [path/to/output/dir]
 
 
 ## Screenshots
-Waiting for clients to connect, two clients are shown below as connected
+Text for first screenshot
 
 ![Alt text](/screenshots/1.JPG?raw=true "Optional Title")
 
-Client 0 is selected for communication
+Text for second screenshot
 
 ![Alt text](/screenshots/2.JPG?raw=true "Optional Title")
 
-Upgrading a simple reverse shell to a fully interactive tty on client 1
+Text for third screenshot
 
 ![Alt text](/screenshots/3.JPG?raw=true "Optional Title")
 
 # Note
-It is better to use [MINGW](https://www.mingw-w64.org/)/[GIT](https://git-scm.com/download/win)/[WSL](https://learn.microsoft.com/en-us/windows/wsl/about) terminal because it can handle interactive shell for all OS's, while the native Windows command prompt i.e. cmd and PowerShell environments do not natively support PTYs in the same way as Linux. They use different mechanisms for terminal emulation and may not fully support all PTY features expected by applications like pty.spawn()
+
 
 ## License
 

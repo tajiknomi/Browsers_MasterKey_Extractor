@@ -17,7 +17,7 @@ git clone https://github.com/tajiknomi/Browser_Credential_Extractor.git
 ## How to build
 
 ```
-cd TCPServerCLI && mkdir build && cd build
+cd "Extract Master Keys" && mkdir build && cd build
 cmake ..
 cmake --build .
 ```
@@ -37,16 +37,9 @@ cmake -G "Visual Studio 16 2019" -A x64 ..
 ```
 ## Usage
 ```
-TCPServerCLI.exe [PortNumber]
+extractMasterKeys.exe [path/to/output/dir]
 ```
-The tool accepts two commands
-```
-# Specify the [id] of the connected client/session
-1) select client [id]
 
-# Disconnect from client/session
-2) exit
-```
 
 ## Screenshots
 Waiting for clients to connect, two clients are shown below as connected

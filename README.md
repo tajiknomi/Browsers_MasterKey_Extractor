@@ -37,7 +37,8 @@ extractMasterKeys.exe [path/to/output/dir]
 
 
 ## Screenshots
-I have currently 4 browsers installed so 4 keys are extracted, these keys are also stored in [path/to/output/dir/keys.txt] 
+I have currently four browsers installed so four keys are extracted, these keys are also stored in [path/to/output/dir/keys.txt].
+Keys are encoded in HEX. As to this date, these are AES-256 bit keys i.e. 32 bytes each
 
 ![Alt text](/screenshots/1.JPG?raw=true "Optional Title")
 

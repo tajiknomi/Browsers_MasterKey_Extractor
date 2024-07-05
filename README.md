@@ -7,7 +7,7 @@ This project has two modules i.e. 1) Extract Master Keys  2) Decrypt data
 This module is writted in C++; when run on the target machine, It which extract the "Master key" which is used to encrypt the browsers data.
 
 ## Decrypt data
-A python module to decrypt the encrypted data using master key.
+A python module to decrypt the encrypted data using master key. (TO BE UPLOADED SOON)
 
 ## How to build
 

@@ -38,9 +38,11 @@ extractMasterKeys.exe [path/to/output/dir]
 
 ## Screenshots
 I have currently 4 browsers installed so 4 keys are extracted, these keys are also stored in [path/to/output/dir/keys.txt] 
+
 ![Alt text](/screenshots/1.JPG?raw=true "Optional Title")
 
 Encrypted data files of each browser are extracted and placed it their respective folders [path/to/output/dir]
+
 ![Alt text](/screenshots/2.JPG?raw=true "Optional Title")
 
 Text for third screenshot

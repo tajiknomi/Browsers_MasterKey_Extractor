@@ -3,10 +3,10 @@ A project to extract saved browser credentials of various browser i.e. Chrome, F
 
 This project has two modules i.e. 1) Extract Master Keys  2) Decrypt data
 
-# Extract Master Keys
+## Extract Master Keys
 This module is writted in C++; when run on the target machine, It which extract the "Master key" which is used to encrypt the browsers data.
 
-# Decrypt data
+## Decrypt data
 A python module to decrypt the encrypted data using master key.
 
 ## How to build

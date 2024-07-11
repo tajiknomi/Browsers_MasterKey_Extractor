@@ -1,13 +1,17 @@
 # Intro
-A project to extract saved browser credentials of various browser i.e. Chrome, Firefox, Brave, Edge, Opera.
+A project to extract saved browser credentials of various browsers i.e. Chrome, Firefox, Brave, Edge, Opera.
 
 This project has two modules i.e. 1) Extract Master Keys  2) Decrypt data
+
+This data extraction and decryption process employs a two-module design for enhanced organization and potential security benefits.  A Red Teamer, during a security assessment, will typically utilize the first module, written in C++ for improved portability across different operating systems, to extracts the master key and essential files without requiring additional dependency on the target. This separation also reduces the risk of detection by various security solutions.
+The second module which are written in Python, typically run on the Red Teamer's machine, then decrypts data using the extracted elements i.e. Master key and extracted file(s)
+
 
 ## 1) Extract Master Keys
 This module is writted in C++; when run on the target machine, It which extract the "Master key" which is used to encrypt the browsers data.
 
-## 2) Decrypt data
-A python module to decrypt the encrypted data using master key. (TO BE UPLOADED SOON)
+## 2) Decrypt data (These scripts are the modified form of https://github.com/unode/firefox_decrypt)
+A python module to decrypt the encrypted data using master key.
 
 ## How to build
 

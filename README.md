@@ -4,7 +4,7 @@ A project to extract saved browser credentials of various browsers i.e. Chrome, 
 This project has two modules i.e. 1) Extract Master Keys  2) Decrypt data
 
 This data extraction and decryption process employs a two-module design for enhanced organization and potential security benefits.  A Red Teamer, during a security assessment, will typically utilize the first module, written in C++ for improved portability across different operating systems, to extracts the master key and essential files without requiring additional dependency on the target. This separation also reduces the risk of detection by various security solutions.
-The second module which are written in Python, typically run on the Red Teamer's machine, then decrypts data using the extracted elements i.e. Master key and extracted file(s)
+The second module which are written in Python, typically run on the Red Teamer's machine, decrypts data using the extracted elements i.e. Master key and extracted file(s)
 
 
 ## 1) Extract Master Keys

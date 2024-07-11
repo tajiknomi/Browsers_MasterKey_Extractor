@@ -38,16 +38,16 @@ std::vector<std::string> makeAbsolutePaths(const std::string & username, const s
 	return absolutePaths;
 }
 
-std::vector<std::string> extractPathsForSpecificBrowser(std::vector<std::string> & absoluteBrowserPath, const std::string & browserNameTag) {
+std::string extractPathsForSpecificBrowser(std::vector<std::string> & absoluteBrowserPath, const std::string & browserNameTag) {
 
 	unsigned int NumOfPaths = absoluteBrowserPath.size();
 	std::vector<std::string> extractedPaths;
 	for (unsigned int i = 0; i < NumOfPaths; ++i) {
 		if (file_exist_check(absoluteBrowserPath[i])) {
 			if ((absoluteBrowserPath[i].find(browserNameTag) != std::string::npos) || (absoluteBrowserPath[i].find(browserNameTag) != std::string::npos)) {
-				extractedPaths.push_back(absoluteBrowserPath[i]);
+				return absoluteBrowserPath[i];
 			}
 		}
 	}
-	return extractedPaths;
+	return std::string("");
 }

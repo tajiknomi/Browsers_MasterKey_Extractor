@@ -33,7 +33,7 @@ add_definitions(-D_UNICODE -DUNICODE)
 # Executable
 add_executable(extractMasterKeys ${SOURCES} ${HEADERS})
 
-# Link with Ws2_32.lib
+# Link with crypt32.lib
 target_link_libraries(extractMasterKeys crypt32)
 
 # Handle 32-bit and 64-bit builds

@@ -81,7 +81,7 @@ def get_db_connection(chrome_path_login_db):
 def main():
     
     if len(sys.argv) != 2:
-        print("Usage: python script_name.py <path_to_chrome_login_data>")
+        print("Usage: python script_name.py <path_to_login_data>")
         sys.exit(1)    
 
     # Get the path from the command-line argument

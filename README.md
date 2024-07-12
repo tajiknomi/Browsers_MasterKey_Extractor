@@ -8,7 +8,7 @@ The second module which are written in Python, typically run on the Red Teamer's
 
 
 ## 1) Extract Master Keys
-This module is writted in C++; when run on the target machine, It which extract the "Master key" which is used to encrypt the browsers data.
+This module is writted in C++; when run on the target machine, It which extract the "Master key" (used to encrypt the browsers data) and "important files".
 
 ## 2) Decrypt data
 A python module to decrypt the encrypted data using master key (These scripts are the modified form of https://github.com/unode/firefox_decrypt).
@@ -18,8 +18,10 @@ A python module to decrypt the encrypted data using master key (These scripts ar
 ```
 cd "Extract Master Keys" && mkdir build && cd build
 cmake ..
-cmake --build .
+cmake --build . --config Release
 ```
+
+You can specify the [cmake-generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html) to create configuration files for your build system e.g.
 
 ## 32/64 build
 
@@ -27,8 +29,6 @@ cmake --build .
 cmake -A x64 ..
 cmake -A Win32 ..
 ```
-
-You can specify the [cmake-generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html) to create configuration files for your build system e.g. To generate VS19 project files for a 64-bit build
 
 ```
 cmake -G "Visual Studio 16 2019" -A x64 ..
@@ -58,7 +58,7 @@ Encrypted data files of each browser are extracted and placed it their respectiv
 
 ## Disclaimer
 
-This software is intended for educational and research purposes, particularly in offensive security (offsec) R&D. It is your responsibility to use it ethically and at your own risk. The developer is not liable for any misuse or consequences of using this software.
+This software is intended for educational and research purposes, particularly in offensive security (offsec). It is your responsibility to use it ethically and at your own risk. The developer is not liable for any misuse or consequences of using this software.
 
 ## License
 

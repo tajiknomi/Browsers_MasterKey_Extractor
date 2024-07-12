@@ -59,7 +59,3 @@ Encrypted data files of each browser are extracted and placed it their respectiv
 ## Disclaimer
 
 This software is intended for educational and research purposes, particularly in offensive security (offsec). It is your responsibility to use it ethically and at your own risk. The developer is not liable for any misuse or consequences of using this software.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)

@@ -14,22 +14,16 @@ cmake --build . --config Release
 
 You can specify the [cmake-generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html) to create configuration files for your build system e.g.
 
-## 32/64 build
-
 ```
 cmake -A x64 ..
 cmake -A Win32 ..
-```
-
-```
 cmake -G "Visual Studio 16 2019" -A x64 ..
-
 ```
+
 ## Usage
 ```
 extractMasterKeys.exe [path/to/output/dir]
 ```
-
 
 ## Screenshots
 I have currently four browsers installed so four keys are extracted, these keys are also stored in [path/to/output/dir/keys.txt].

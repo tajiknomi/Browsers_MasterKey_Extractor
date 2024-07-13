@@ -30,13 +30,15 @@ I have currently four browsers installed so four keys are extracted, these keys 
 
 For clarity and ease of use, the keys are stored in the hexadecimal (HEX) format. It's important to note that these keys are currently implemented using the AES-256 algorithm, with a key size of 256 bits, which translates to 32 bytes
 
+1) Once the utility is run, it will show the master keys of each browser
+
 ![Alt text](/screenshots/1.JPG?raw=true "Optional Title")
 
-The utility has organised encrypted data files and master key of each browser at [path/to/output/dir]
+2) The utility has organised encrypted data files and master key of each browser at [path/to/output/dir]
 
 ![Alt text](/screenshots/2.JPG?raw=true "Optional Title")
 
-[path/to/output/dir/keys.txt]
+3) [path/to/output/dir/keys.txt]
 
 ![Alt text](/screenshots/3.JPG?raw=true "Optional Title")
 

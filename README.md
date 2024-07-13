@@ -1,5 +1,5 @@
 # Intro
-A utility extract the Master Key (use to encrypt browsers saved credentials) and important file(s) of various browsers (i.e. Chrome, Brave, Edge, Opera) in order to extract the saved credentials.
+This utility extract the Master Key (use to encrypt browsers saved credentials) and important file(s) of various browsers (i.e. Chrome, Brave, Edge, Opera) in order to decrypt the saved credentials.
 
 A Red Teamer, during a security assessment, can utilize this module to extract the master key and essential files without requiring additional dependency on the target. By focusing solely on key extraction, keeps the software footprint small and also reduces its likelihood to appear as suspicious to various security solutions.
 

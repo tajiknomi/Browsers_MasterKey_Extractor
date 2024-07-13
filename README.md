@@ -32,7 +32,7 @@ For clarity and ease of use, the keys are stored in the hexadecimal (HEX) format
 
 ![Alt text](/screenshots/1.JPG?raw=true "Optional Title")
 
-Encrypted data files of each browser are extracted and placed it their respective folders [path/to/output/dir]
+The utility has organised encrypted data files and master key of each browser at [path/to/output/dir]
 
 ![Alt text](/screenshots/2.JPG?raw=true "Optional Title")
 

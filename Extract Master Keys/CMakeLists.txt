@@ -30,6 +30,9 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/include PREFIX "Header Files" FILE
 # Enable Unicode
 add_definitions(-D_UNICODE -DUNICODE)
 
+# Set runtime library to /MT for release builds [make it standalone, without requiring the Visual C++ Redistributable package on the target system]
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+
 # Executable
 add_executable(extractMasterKeys ${SOURCES} ${HEADERS})
 

@@ -7,22 +7,22 @@ A Red Teamer, during a security assessment, can utilize this module to extract t
 ## How to build
 
 ```
-cd "Extract Master Keys" && mkdir build && cd build
-cmake ..
-cmake --build . --config Release
+$ cd "Extract Master Keys" && mkdir build && cd build
+$ cmake ..
+$ cmake --build . --config Release
 ```
 
 You can specify the [cmake-generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html) to create configuration files for your build system e.g.
 
 ```
-cmake -A x64 ..
-cmake -A Win32 ..
-cmake -G "Visual Studio 16 2019" -A x64 ..
+$ cmake -A x64 ..
+$ cmake -A Win32 ..
+$ cmake -G "Visual Studio 16 2019" -A x64 ..
 ```
 
 ## Usage
 ```
-extractMasterKeys.exe [path/to/output/dir]
+$ extractMasterKeys.exe [path/to/output/dir]
 ```
 
 ## Screenshots

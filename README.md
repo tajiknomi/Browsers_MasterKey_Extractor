@@ -37,7 +37,7 @@ $ pip install pycryptodome
 ```
 
 ## The reason behind spliting the process
-During a security assessment, you can utilize `extractMasterKeys.exe` to extract the master key and essential files without requiring additional dependency on the target. By focusing solely on key extraction on the target, keeps the software footprint small and a is little OPSEC SAFE technique.
+During a security assessment, you can utilize `extractMasterKeys.exe` to extract the master key and essential files without requiring additional dependency on the target. By focusing solely on key extraction,it keeps the software footprint small and is slightly OPSEC-SAFE tactic.
 
 ## How to build
 ```

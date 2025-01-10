@@ -1,11 +1,45 @@
-# Intro
-This utility extract the Master Key (use to encrypt browsers saved credentials) and important file(s) of various browsers (i.e. Chrome, Brave, Edge, Opera) in order to decrypt the saved credentials.
+## What is does?
+Extract stored credentials of various browsers (i.e. Chrome, Brave, Edge, Opera, Firefox).
 
-A Red Teamer, during a security assessment, can utilize this module to extract the master key and essential files without requiring additional dependency on the target. By focusing solely on key extraction, keeps the software footprint small and also reduces its likelihood to appear as suspicious to various security solutions.
+## Quick Start
 
+Grab the latest binary from the [release section]((https://github.com/tajiknomi/Browsers_MasterKey_Extractor/releases)) and turn off the AV on the machine
+ 
+
+1: Run the `extractMasterKeys.exe` on the target machine to extract the AES Master key of various browser(s)
+```
+$ extractMasterKeys.exe <path/to/output/dir>
+```
+
+`<path/to/output/dir>` will contain the output extracted keys and corresponding files of installed browsers.
+
+
+2: Run the python script i.e. `browserCredDecryptor.py` on your machine and provide the key and the corresponding file(s) of the browser whose credential you want to extract. e.g.
+
+```
+$ python browserCredDecryptor.py
+Enter the AES key (hex): 37ac4ebd676cf9bfb910a4e34a9778467cc288730091f3da057adb7141d3de2b
+Enter the path to the 'Login Data' file: path/to/Login Data
+``` 
+
+### Note:
+`browserCredDecryptor.py` depends on `pycryptodome` package and its better to install the package in python virtual environment so that it doesn't conflict with your crypto package(s).
+
+Windows
+```
+$ python -m venv virtual_env && virtual_env\Scripts\activate
+$ pip install pycryptodome
+```
+Linux
+```
+$ apt install python3.12-venv && python3 -m venv virtual_env && source virtual_env/bin/activate
+$ pip install pycryptodome
+```
+
+## The reason behind spliting the process
+During a security assessment, you can utilize `extractMasterKeys.exe` to extract the master key and essential files without requiring additional dependency on the target. By focusing solely on key extraction on the target, keeps the software footprint small and a is little OPSEC SAFE technique.
 
 ## How to build
-
 ```
 $ cd "Extract Master Keys" && mkdir build && cd build
 $ cmake ..
@@ -20,29 +54,9 @@ $ cmake -A Win32 ..
 $ cmake -G "Visual Studio 16 2019" -A x64 ..
 ```
 
-## Usage
-```
-$ extractMasterKeys.exe <path/to/output/dir>
-```
-
-## Screenshots
-I have currently four browsers installed so four keys are extracted, these keys are also stored in [path/to/output/dir/keys.txt].
-
-For clarity and ease of use, the keys are stored in the hexadecimal (HEX) format. It's important to note that these keys are currently implemented using the AES-256 algorithm, with a key size of 256 bits, which translates to 32 bytes
-
-1) Once the utility is run, it will show the master keys of each browser
-
-![Alt text](/screenshots/1.JPG?raw=true "Optional Title")
-
-2) The utility has organised encrypted data files and master key of each browser at [path/to/output/dir]
-
-![Alt text](/screenshots/2.JPG?raw=true "Optional Title")
-
-3) [path/to/output/dir/keys.txt]
-
-![Alt text](/screenshots/3.JPG?raw=true "Optional Title")
-
-
 ## Disclaimer
 
 This software is intended for educational and research purposes, particularly in offensive security (offsec). It is your responsibility to use it ethically and at your own risk. The developer is not liable for any misuse or consequences of using this software.
+
+## LICENSE
+[GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html)

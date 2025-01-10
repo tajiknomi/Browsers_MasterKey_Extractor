@@ -3,7 +3,7 @@ Extract stored credentials of various browsers (i.e. Chrome, Brave, Edge, Opera,
 
 ## Quick Start
 
-Grab the latest binary from the [release section]((https://github.com/tajiknomi/Browsers_MasterKey_Extractor/releases)) and turn off the AV on the machine
+Grab the latest binary from the [release section](https://github.com/tajiknomi/Browsers_MasterKey_Extractor/releases) and turn off the AV on the machine
  
 
 1: Run the `extractMasterKeys.exe` on the target machine to extract the AES Master key of various browser(s)

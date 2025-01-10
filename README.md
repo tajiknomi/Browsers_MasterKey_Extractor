@@ -14,7 +14,7 @@ $ extractMasterKeys.exe <path/to/output/dir>
 `<path/to/output/dir>` will contain the output extracted keys and corresponding files of installed browsers.
 
 
-2: Run the python script i.e. `browserCredDecryptor.py` on your machine and provide the key and the corresponding file(s) of the browser whose credential you want to extract. e.g.
+2: Run the python script i.e. `browserCredDecryptor.py` on your machine and provide the key and files extracted by the above utility. e.g.
 
 ```
 $ python browserCredDecryptor.py

@@ -1,5 +1,5 @@
 ## What is does?
-Extract stored credentials of various browsers (i.e. Chrome, Brave, Edge, Opera, Firefox).
+Extract stored credentials of various browsers (i.e. Chrome, Brave, Edge, Opera).
 
 ## Quick Start
 

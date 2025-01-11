@@ -1,6 +1,7 @@
 ## What is does?
 Extract stored credentials of various browsers (i.e. Chrome, Brave, Edge, Opera).
 
+#### Upate for firefox will be soon added.
 ## Quick Start
 
 Grab the latest binary from the [release section](https://github.com/tajiknomi/Browsers_MasterKey_Extractor/releases) and turn off the AV on the machine
